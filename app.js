@@ -5,7 +5,13 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  res.send("hello");
+  var today = new Date();
+  var currentDay = today.getDay();
+  if (currentDay === 6) {
+    res.write("<h1>Yay it's the weekend.</h1>");
+  } else {
+    res.sendFile(`${__dirname}/index.html`);
+  }
 });
 
 app.listen(port, () => {
